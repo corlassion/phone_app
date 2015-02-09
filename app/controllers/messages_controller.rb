@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
 	def index
-		@start_time = (Date.today - 5).to_s(:db)
+		@start_time = 2015-02-07
 		@end_time = Date.today.to_s(:db)
 		@items_count = 5
 	end
@@ -17,9 +17,9 @@ class MessagesController < ApplicationController
 
 	def build_array()
 		@view_messages = []
-		@start_time = (Date.today - 5).to_s(:db)
+		@start_time = Date.new(2015,02,07)
 		@end_time = (Date.today + 1).to_s(:db)
-		@items_count = 5
+		@items_count = 10
 		cmd = "SELECT * FROM view_messages(\'#{@start_time}\', \'#{@end_time}\', \' #{@items_count}\')" 
 		temp_results = ActiveRecord::Base.connection.execute(cmd)
 		#binding.pry
@@ -35,9 +35,9 @@ class MessagesController < ApplicationController
 											view_message_temp["code_action"],
 											view_message_temp["message_created_at"],
 											)
-			if view_message.username == "SMichal"
+			#if view_message.username == "SMichal"
 				@view_messages << view_message
-			end
+			#end
 			#binding.pry
 		end
 	end

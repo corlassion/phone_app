@@ -1,6 +1,6 @@
 <% @view_messages.each do |view_message| %>
 	<p><%= view_message.message %> <%= view_message.username %></p>
 <% end %>
-<%= form_tag({controller: "messages", action: "create"}) do %>
+<%= form_tag({controller: "messages", action: "create"}, {:class => "navbar-left navbar-form"}) do %>
 	<%= submit_tag("Fetch") %>
 <% end %>
