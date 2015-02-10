@@ -10,26 +10,30 @@ class MessagesController < ApplicationController
 		@params = params
 		@uname = @params[:uname]
 		#binding.pry
-		@view_messages = []
-		build_array()
-		#binding.pry
-		if !@view_messages.any?
+		if !User.find_by_username(@uname)
 			render "norecord"
 		else
-			@gospel = 0
-			@converts = 0
-			@baptisms = 0
-			@church_plants = 0
-			@view_messages.each do |view_message|
-				case view_message.code_id.to_i
-				when 101
-					@gospel = @gospel + view_message.message_count.to_i
-				when 201
-					@converts = @converts + view_message.message_count.to_i
-				when 301
-					@baptisms = @baptisms + view_message.message_count.to_i
-				when 401
-					@church_plants = @church_plants + view_message.message_count.to_i
+			@view_messages = []
+			build_array()
+			#binding.pry
+			if !@view_messages.any?
+				render "norecord"
+			else
+				@gospel = 0
+				@converts = 0
+				@baptisms = 0
+				@church_plants = 0
+				@view_messages.each do |view_message|
+					case view_message.code_id.to_i
+					when 101
+						@gospel = @gospel + view_message.message_count.to_i
+					when 201
+						@converts = @converts + view_message.message_count.to_i
+					when 301
+						@baptisms = @baptisms + view_message.message_count.to_i
+					when 401
+						@church_plants = @church_plants + view_message.message_count.to_i
+					end
 				end
 			end
 		end
