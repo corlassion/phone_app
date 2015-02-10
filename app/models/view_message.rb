@@ -2,6 +2,7 @@ class ViewMessage
 	attr_accessor :code_id
 	attr_accessor :message_id
 	attr_accessor :message
+	attr_accessor :message_count
 	attr_accessor :username
 	attr_accessor :usertype
 	attr_accessor :user_id
@@ -13,6 +14,7 @@ class ViewMessage
 	def initialize( code_id,
 					message_id,
 					message,
+					message_count,
 					username,
 					usertype,
 					user_id,
@@ -23,6 +25,7 @@ class ViewMessage
 		@code_id = code_id
 		@message_id = message_id
 		@message = message
+		@message_count = message_count
 		@username = username
 		@usertype = usertype
 		@user_id = user_id

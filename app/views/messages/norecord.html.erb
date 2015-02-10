@@ -1,4 +1,11 @@
-<h1>No Records Found</h1>
-<%= form_tag({controller: "messages", action: "create"}) do %>
-	<%= submit_tag("Fetch") %>
-<% end %>
+<div>
+	<%= render partial: "formtop" %>
+</div>
+
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		<h3>No Records Found for <%= @uname %></h3>
+	</div>
+</div>
+
+

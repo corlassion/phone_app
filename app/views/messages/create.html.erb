@@ -1,6 +1,23 @@
-<% @view_messages.each do |view_message| %>
-	<p><%= view_message.message %> <%= view_message.username %></p>
-<% end %>
-<%= form_tag({controller: "messages", action: "create"}, {:class => "navbar-left navbar-form"}) do %>
-	<%= submit_tag("Fetch") %>
-<% end %>
+<div>
+	<%= render partial: "formtop" %>
+</div>
+
+<div class="container-fluid">
+  	<div class="row">
+  		<div class="col-xs-6 col-md-4">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title" >
+						<%= @uname %>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<p>Presented the gospel: <%= @gospel %></p>
+			  		<p>Conversions: <%= @converts %></p>
+			  		<p>Performed baptisms: <%= @baptisms %></p>
+			  		<p>Planted churches: <%= @church_plants %></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
