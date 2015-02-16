@@ -1,7 +1,0 @@
-<nav id="header" class="navbar navbar-default" role="navigation">
-	<%= form_tag({controller: "messages", action: "create"}, {:class => "navbar-left navbar-form"}) do %>
-		<%= label_tag(:uname, "Username", :class => 'form-group') %>
-		<%= text_field_tag(:uname) %>
-		<%= submit_tag("Fetch", :class => 'btn btn-default btn-info navbar-btn') %>
-	<% end %>
-</nav>
