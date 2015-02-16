@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'pg'
 gem 'pry', '~> 0.10.0'
 gem 'pry-rails'
+gem 'mail'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
