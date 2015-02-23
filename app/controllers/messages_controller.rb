@@ -24,6 +24,7 @@ class MessagesController < ApplicationController
 				@baptisms = 0
 				@church_plants = 0
 				@view_messages.each do |view_message|
+					binding.pry
 					case view_message.code_id.to_i
 					when 101
 						@gospel = @gospel + view_message.message_count.to_i
