@@ -5,9 +5,11 @@ class MessagesController < ApplicationController
 		@end_time = Date.today.to_s(:db)
 		@items_count = 5
 		youve_got_mail()
+		daily_dose_of_data()
 	end
 
 	def create
+		daily_dose_of_data()
 		@params = params
 		@uname = @params[:uname]
 		#binding.pry
@@ -26,7 +28,7 @@ class MessagesController < ApplicationController
 				@church_plants = 0
 				@view_messages.each do |view_message|
 					#binding.pry
-					case view_message.code_id.to_i
+				case view_message.code_id.to_i
 					when 101
 						@gospel = @gospel + view_message.message_count.to_i
 					when 201
@@ -94,6 +96,35 @@ class MessagesController < ApplicationController
 			end
 			Message.create :user_id => @user_id, :code_id => @code_id, :message_count => @message_count, :message => @message
 		end
+	end
+
+	def daily_dose_of_data()
+		@start_time = (Date.today).to_s(:db)
+		@end_time = (Date.today + 1).to_s(:db)
+		@daily_gospel = 0
+		@daily_converts = 0
+		@daily_baptisms = 0
+		@daily_church_plants = 0
+		cmd = "SELECT * FROM daily_data(\'#{@start_time}\', \'#{@end_time}\')"
+		temp_results = ActiveRecord::Base.connection.exec_query(cmd)
+		#binding.pry
+		temp_results.each do |view_message_temp|
+			view_message = ViewMessage.new( view_message_temp["code_id"],
+											view_message_temp["message_count"]											
+											)
+			case view_message.code_id.to_i
+				when 101
+					@daily_gospel = @daily_gospel + view_message.message_count.to_i
+				when 201
+					@daily_converts = @daily_converts + view_message.message_count.to_i
+				when 301
+					@daily_baptisms = @daily_baptisms + view_message.message_count.to_i
+				when 401
+					@daily_church_plants = @daily_church_plants + view_message.message_count.to_i
+			end
+		end
+		#binding.pry
+
 	end
 
 
