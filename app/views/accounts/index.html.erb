@@ -1,0 +1,38 @@
+<div>
+	<%= render partial: "formtop" %>
+</div>
+
+<%= form_tag({controller: "accounts", action: "create"}, {:class => "container-fluid"}) do %>
+	<div class='form-group'>
+		<%= label_tag(:uname, "Username") %>
+		<%= text_field_tag(:uname) %>
+	</div>
+	
+	<div class='form-group'>
+		<%= label_tag(:uemail, "Email") %>
+		<%= text_field_tag(:uemail) %>
+	</div>
+	
+	<div class='form-group'>
+		<%= label_tag(:uphone, "Phone") %>
+		<%= text_field_tag(:uphone) %>
+	</div>
+
+	<div class='form-group'>
+		<%= label_tag(:utype, "User Type") %>
+		<%= select_tag(:utype, options_for_select([['SuperUser', 999], ['Administrator', 111], ['Pastor', 1], ['Subscriber', 2]])) %>
+	</div>
+
+	<div class = 'form-group'>
+		<%= label_tag(:upass, "Password") %>
+		<%= password_field_tag(:upass) %>
+	</div>
+
+
+
+	<%= submit_tag("Create", :class => 'btn btn-default btn-info') %>
+<%end%>
+
+<div>
+	<%= render partial: "/messages/daily_footer" %>
+</div>

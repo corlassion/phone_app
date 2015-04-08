@@ -1,0 +1,31 @@
+<nav id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="row">
+      
+        <%= form_tag login_sessions_path, :id => 'session_new', method: "post" do %>
+        <div class="form-inline pad_top">
+        <div class = "form-group">
+          <a href="">
+            <%=image_tag("logo.png", :class => "pad_left")%>
+          </a>
+        </div>
+        <div class = "form-group pad_left">
+          <%= label_tag :email, "Email" %>
+          <%= email_field_tag :email %>
+        </div>
+        <div class = "form-group pad_left">
+          <%= label_tag :password, "Password" %>
+          <%= password_field_tag :password %>
+          <br/>
+        </div>
+          <%= submit_tag "Login", class: "btn btn-info" %>
+        </div>
+      <% end %>
+  
+      </div>
+  </div>
+</nav>
+
+<div>
+  <%= render partial: "/messages/daily_footer" %>
+</div>
