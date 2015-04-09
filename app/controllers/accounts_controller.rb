@@ -3,7 +3,6 @@ class AccountsController < ApplicationController
 	def index
 		@start_time = 2015-02-07
 		@end_time = Date.today.to_s(:db)
-		@items_count = 5
 		@user_type = UserType.all
 		youve_got_mail()
 		daily_dose_of_data()

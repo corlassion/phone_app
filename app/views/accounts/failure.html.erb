@@ -1,5 +1,5 @@
 <div>
-	<%= render partial: "formtop" %>
+	<%= render partial: "/users/formtop" %>
 </div>
 
 <div class='container-fluid'>
@@ -9,11 +9,11 @@
 		</div>
 		<div class="panel-body">
 			<%= link_to('Retry', accounts_path, class: "btn btn-warning") %>
-			<%= link_to('Home', messages_path, class: "btn btn-success") %>
+			<%= link_to('Home', users_path, class: "btn btn-success") %>
 		</div>
 	</div>
 </div>
 
 <div>
-	<%= render partial: "/messages/daily_footer" %>
+	<%= render partial: "/users/daily_footer" %>
 </div>

@@ -1,20 +1,25 @@
-class MessagesController < ApplicationController
+class UsersController < ApplicationController
 
 	def index
-		@start_time = 2015-02-07
-		@end_time = Date.today.to_s(:db)
-		@items_count = 5
 		youve_got_mail()
 		daily_dose_of_data()
 		unless current_user
 			redirect_to "/sessions"
 		end
+		if params[:uname]
+			params[:id] = User.find_by_username(params[:uname])
+			redirect_to user_path(params[:id])
+		else
+			@users = User.all
+		end
+		#binding.pry
 	end
 
-	def create
+	
+
+	def show
 		daily_dose_of_data()
-		@params = params
-		@uname = @params[:uname]
+		@uname = User.find_by_id(params[:id]).username
 		#binding.pry
 		if !User.find_by_username(@uname)
 			render "norecord"
@@ -44,7 +49,6 @@ class MessagesController < ApplicationController
 				end
 			end
 		end
-		#binding.pry
 	end
 
 	def build_array()

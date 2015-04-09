@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :messages
+
 
   resources :sessions do
     collection do
@@ -14,8 +14,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :accounts
+  resources :users do
+    get '/users/:id', to: 'users#show', as: 'user'
+  end
 
+  resources :accounts
 
   root 'sessions#index'
 

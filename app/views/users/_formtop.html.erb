@@ -1,16 +1,17 @@
 <nav id="header" class="navbar navbar-default" role="navigation">
-	<%= form_tag({controller: "messages", action: "create"}, {:class => "navbar-left navbar-form"}) do %>
+	<%= form_tag(users_path, :method => "get", :class => "navbar-left navbar-form", :name =>nil) do %>
 		
-		<a href="">
+		<a href="/users">
 			<%= image_tag("logo.png") %>
 		</a>
 
 		<%= label_tag(:uname, "Username", :class => 'form-group') %>
-		<%= text_field_tag(:uname) %>
-		<%= submit_tag("Fetch", :class => 'btn btn-default btn-info navbar-btn') %>
+		<%= text_field_tag(:uname, params[:uname]) %>
+		<%= submit_tag("Fetch", :class => 'btn btn-default btn-info navbar-btn', :name => nil) %>
 	<% end %>
 	<%= link_to('Logout', logout_sessions_path, method: :delete, class: "btn btn-link navbar-right") %>
 	<%= link_to('Create Account', accounts_path, class: "btn btn-link navbar-right") %>
+	<%= link_to('Home', users_path, class: "btn btn-link navbar-right") %>
 	
 
 

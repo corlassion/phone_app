@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def youve_got_mail()
+    begin
     Mail.defaults do
         retriever_method :pop3, :address    => "pop.gmail.com",
                                 :port       => 995,
@@ -44,18 +45,22 @@ class ApplicationController < ActionController::Base
       rescue
       end
     end
+    rescue
+    end
   end
 
   def daily_dose_of_data()
-    @start_time = (Date.today).to_s(:db)
-    @end_time = (Date.today + 2).to_s(:db)
+    #For an unknown reason, rails thinks it is a day in the future
+    @start_time = (DateTime.now).to_s(:db)
+    @end_time = (DateTime.now+1).to_s(:db)
+
     @daily_gospel = 0
     @daily_converts = 0
     @daily_baptisms = 0
     @daily_church_plants = 0
     cmd = "SELECT * FROM daily_data(\'#{@start_time}\', \'#{@end_time}\')"
     temp_results = ActiveRecord::Base.connection.exec_query(cmd)
-    #binding.pry
+    binding.pry
     temp_results.each do |daily_message_temp|
       daily_message = DailyMessage.new( daily_message_temp["code_id"],
                       daily_message_temp["message_count"]                     

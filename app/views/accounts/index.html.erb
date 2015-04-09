@@ -1,5 +1,5 @@
 <div>
-	<%= render partial: "formtop" %>
+	<%= render partial: "/users/formtop" %>
 </div>
 
 <%= form_tag({controller: "accounts", action: "create"}, {:class => "container-fluid"}) do %>
@@ -34,5 +34,5 @@
 <%end%>
 
 <div>
-	<%= render partial: "/messages/daily_footer" %>
+	<%= render partial: "/users/daily_footer" %>
 </div>
