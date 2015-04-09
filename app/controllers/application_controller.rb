@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
     @daily_church_plants = 0
     cmd = "SELECT * FROM daily_data(\'#{@start_time}\', \'#{@end_time}\')"
     temp_results = ActiveRecord::Base.connection.exec_query(cmd)
-    binding.pry
+    #binding.pry
     temp_results.each do |daily_message_temp|
       daily_message = DailyMessage.new( daily_message_temp["code_id"],
                       daily_message_temp["message_count"]                     
