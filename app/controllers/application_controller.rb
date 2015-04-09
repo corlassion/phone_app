@@ -47,7 +47,6 @@ class ApplicationController < ActionController::Base
   end
 
   def daily_dose_of_data()
-    #For an unknown reason, rails thinks it is a day in the future
     @start_time = (Time.now-86400).utc.to_s(:db)
     @end_time = (Time.now).utc.to_s(:db)
     @daily_gospel = 0
