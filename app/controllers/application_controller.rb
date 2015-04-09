@@ -19,15 +19,12 @@ class ApplicationController < ActionController::Base
                                 :enable_ssl => true
     end
     emails = Mail.all
-    #binding.pry
     emails.each do |email|
       @message = email.body.decoded.partition("\n")[0]
-      #binding.pry
       @code_id = @message[0..2].to_i
       if Code.find_by_id(@code_id) == nil
         @message = email.body.decoded.partition("\n\n")[2].partition("\n")[0]
         @code_id = @message[0..2].to_i
-        #binding.pry
         if Code.find_by_id(@code_id) == nil
           next
         end
@@ -51,16 +48,14 @@ class ApplicationController < ActionController::Base
 
   def daily_dose_of_data()
     #For an unknown reason, rails thinks it is a day in the future
-    @start_time = (DateTime.now).to_s(:db)
-    @end_time = (DateTime.now+1).to_s(:db)
-
+    @start_time = (Time.now-86400).utc.to_s(:db)
+    @end_time = (Time.now).utc.to_s(:db)
     @daily_gospel = 0
     @daily_converts = 0
     @daily_baptisms = 0
     @daily_church_plants = 0
     cmd = "SELECT * FROM daily_data(\'#{@start_time}\', \'#{@end_time}\')"
     temp_results = ActiveRecord::Base.connection.exec_query(cmd)
-    #binding.pry
     temp_results.each do |daily_message_temp|
       daily_message = DailyMessage.new( daily_message_temp["code_id"],
                       daily_message_temp["message_count"]                     
@@ -76,7 +71,6 @@ class ApplicationController < ActionController::Base
           @daily_church_plants = @daily_church_plants + daily_message.message_count.to_i
       end
     end
-    #binding.pry
 
   end
 

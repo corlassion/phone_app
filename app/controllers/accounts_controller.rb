@@ -1,8 +1,6 @@
 class AccountsController < ApplicationController
 
 	def index
-		@start_time = 2015-02-07
-		@end_time = Date.today.to_s(:db)
 		@user_type = UserType.all
 		youve_got_mail()
 		daily_dose_of_data()
@@ -21,7 +19,6 @@ class AccountsController < ApplicationController
 				else
 					@salt = Array.new(16){[*"A".."Z", *"0".."9", *"a".."z"].sample}.join
 					@passhash = Digest::SHA1.hexdigest @salt + params[:upass]
-					#binding.pry
 					User.create :username => params[:uname], :user_type_id => UserType.find_by_user_type(params[:utype]).user_type, :location_id => 1, :email => params[:uemail], :phone_num => params[:uphone], :salt => @salt, :passhash => @passhash
 
 				end
